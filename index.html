@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
+    <style type="text/css">
+    body {
+        margin: 0;
+        padding: 0;
+        width: 1080px;
+    }
+
+    .col-sm-12 {
+        width: 100%;
+    }
+
+    .col-sm-6 {
+        width: 50%;
+        display: inline-block;
+        float: left;
+    }
+
+    .col-sm-4 {
+        width: 33.3%;
+        display: inline-block;
+        float: left;
+    }
+
+    .strong {
+        font-weight: bold;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+    </style>
+</head>
+
+<body ng-app="main" ng-controller="maincontrol">
+	<ul class="col-sm-6">
+    	<select ng-model="store.CategoryOption" ng-options="x as y for (x,y) in CategoryList"></select>
+            <input type="text" ng-model="store.name">
+            <button type="button" ng-click="add()">add</button>
+</ul>
+    <ul class="col-sm-6">
+        <li class="col-sm-12">
+            <div class="col-sm-4 strong">Category</div>
+            <div class="col-sm-4 strong">Name</div>
+            <div class="col-sm-4 strong">Action</div>
+        </li>
+        <li class="col-sm-12" ng-repeat="single in testarray">
+            <div class="col-sm-4" ng-bind="single.CategoryOption"></div>
+            <div class="col-sm-4" ng-bind="single.Name"></div>
+            <div class="col-sm-4" ng-bind="'Delete'"></div>
+        </li>
+    </ul>
+    <script>
+    var first = angular.module('main', []);
+
+    first.controller('maincontrol', ['$scope', function($first) {
+    	$first.CategoryList = {"1":"book","2":"device","3":"cool Drinks","4":"mobiles","5":"sugar","6":"slave","7":"order"};
+    	           $first.testarray = [];  
+           $first.add = function () {  
+               var _addvalue = {  
+                   CategoryOption: $first.store.CategoryOption,  
+                   Name: $first.store.name
+               };  
+               $first.testarray.push(_addvalue);  
+               ClearModel();  
+           }  
+  
+           function ClearModel() {  
+               $first.store.CategoryOption = 0;  
+               $first.store.name = ''; 
+           } 
+
+    }]);
+    </script>
+</body>
+
+</html>
