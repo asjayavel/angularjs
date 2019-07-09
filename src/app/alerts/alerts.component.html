@@ -1,0 +1,194 @@
+<div aria-label="breadcrumb" class=" container">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="components">Components</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Alert</li>
+  </ol>
+</div>
+<div class="container pb-4" ng-init="a_initialize()">
+  <div class="alert alert-warning alert-dismissible fade show clearfix" role="alert" style="display: none;"
+    id="a_statusmsg">
+    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"
+      onclick="window.location.href='/alerts'">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <h3 class="text-muted">Alerts & Model dialogs</h3>
+  <div class="clearfix">
+    <div class="col-xl-6 col-12 col-sm-12 float-left border border-primary rounded p-3" id="a-sec1">
+      <div style="-webkit-clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
+clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);width: 100%;height: 30%;background: orange">
+      </div>
+      <button class="btn btn-secondary float-right mt-2" (click)="a_domremove('a-sec1', 'a-success-msg')">Remove This
+        Container</button>
+    </div>
+    <div class="alert alert-success" role="alert" style="display: none" id="a-success-msg">
+      <h4 class="alert-heading">Well done!</h4>
+      <p>Aww yeah, your job is successfully don .</p>
+      <hr>
+      <p class="mb-0">This success message will be auto disapeare 10s.</p>
+    </div>
+    <div id="a_undo_dom"
+      class="col-12 col-sm-12 col-xl-5 float-right border border-primary rounded p-3 mt-sm-2 mt-2 mt-xl-0">
+      <div id="a-sec2">
+        <div style="-webkit-clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
+clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);width: 100%;height: 30%;background: orange">
+        </div>
+        <button class="waves-effect waves-light btn float-right mt-2"
+          (click)="a_displayCustomHTMLToast('a-sec2','a_undo_dom');a_domremove('a-sec2')">Remove This Container with
+          Action</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 clearfix p-0 my-4">
+    <div class="col-xl-6 col-12 col-sm-12 float-left pl-0 pr-0 pr-xl-2">
+      <p class="d-inline-block font-weight-bold text-muted">Current Task</p>
+      <div id="div1" ondrop="drop(event, this)" ondragover="allowDrow(event)"
+        class="h-75 w-100 rounded border border-primary p-3">
+        <a href="#" draggable="true" ondragstart="drag(event)" id="drag1"
+          class="d-block rounded text-white p-2 mb-2">Write Mail</a>
+        <a href="#" draggable="true" ondragstart="drag(event)" id="drag2"
+          class="d-block rounded text-white p-2 mb-2">Talk to customer</a>
+        <a href="#" draggable="true" ondragstart="drag(event)" id="drag3"
+          class="d-block rounded text-white p-2 mb-2">Testing</a>
+        <a href="#" draggable="true" ondragstart="drag(event)" id="drag4"
+          class="d-block rounded text-white p-2 mb-2">Test1</a>
+        <a href="#" draggable="true" ondragstart="drag(event)" id="drag5"
+          class="d-block rounded text-white p-2 mb-2">Test2</a>
+        <a href="#" draggable="true" ondragstart="drag(event)" id="drag6"
+          class="d-block rounded text-white p-2 mb-2">Test3</a>
+      </div>
+    </div>
+    <div class="col-xl-6 col-12 col-sm-12 float-left pr-0 pl-0 pl-xl-2">
+      <p class="d-inline-block font-weight-bold text-muted">Finshed Task</p>
+      <div id="div2" ondrop="drop(event, this)" ondragover="allowDrow(event)"
+        class="h-75 w-100 rounded border border-primary p-3">
+        <a href="#" draggable="true" ondragstart="drag(event)" id="drag7"
+          class="d-block rounded text-white p-2 mb-2">Test4</a>
+        <a href="#" draggable="true" ondragstart="drag(event)" id="drag8"
+          class="d-block rounded text-white p-2 mb-2">Test5</a>
+        <a href="#" draggable="true" ondragstart="drag(event)" id="drag9"
+          class="d-block rounded text-white p-2 mb-2">Test6</a>
+        <a href="#" draggable="true" ondragstart="drag(event)" id="drag10"
+          class="d-block rounded text-white p-2 mb-2">Test7</a>
+        <a href="#" draggable="true" ondragstart="drag(event)" id="drag11"
+          class="d-block rounded text-white p-2 mb-2">Test8</a>
+        <a href="#" draggable="true" ondragstart="drag(event)" id="drag12"
+          class="d-block rounded text-white p-2 mb-2">Test9</a>
+      </div>
+    </div>
+  </div>
+  <div class="p-3 border border-success w-75 m-auto clearfix mt-4">
+    <button id="opener" class="waves-effect waves-light btn mb-2">Open Dialog</button>
+    <div id="dialog-confirm" title="Empty the recycle bin?">
+      <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>These items will be
+        permanently deleted and cannot be recovered. Are you sure?</p>
+    </div>
+    <a class="waves-effect waves-light btn modal-trigger  mb-2" href="#modal3">Model Bottom Sheet Style</a>
+    <button title="alertbtn" id="alertbtn" onclick="alertfunction()" class="btn btn-outline-success mb-2">Single click
+      for alert</button>
+    <button title="alertbtnd" id="alertbtnd" ondblclick="alertfunction()" class="btn btn-outline-success mb-2">Double
+      click for alert</button>
+    <button title="confirmbtn" id="confirmbtn" onclick="confirmbox()" class="btn btn-outline-success mb-2">Click for
+      confirm box</button>
+    <button title="promptbox" id="promptbox" (click)="a_prompt()" class="btn btn-outline-success mb-2"> Click for
+      Prompt Box</button>
+  </div>
+  <div id="modal3" class="modal bottom-sheet" tabindex="0"
+    style="z-index: 1003; display: none; opacity: 0; bottom: -100%;">
+    <div class="modal-content">
+      <h3 class="header">Model Header</h3>
+      <ul class="collection">
+        <li class="collection-item avatar">
+          <img src="images/yuna.jpg" alt="" class="circle">
+          <span class="title">Title</span>
+          <p>First Line
+            <br> Second Line
+          </p>
+          <a href="#!" class="secondary-content">
+            <i class="material-icons">grade</i>
+          </a>
+        </li>
+        <li class="collection-item avatar">
+          <i class="material-icons circle">folder</i>
+          <span class="title">Title</span>
+          <p>First Line
+            <br> Second Line
+          </p>
+          <a href="#!" class="secondary-content">
+            <i class="material-icons">grade</i>
+          </a>
+        </li>
+        <li class="collection-item avatar">
+          <i class="material-icons circle green">assessment</i>
+          <span class="title">Title</span>
+          <p>First Line
+            <br> Second Line
+          </p>
+          <a href="#!" class="secondary-content">
+            <i class="material-icons">grade</i>
+          </a>
+        </li>
+        <li class="collection-item avatar">
+          <i class="material-icons circle red">play_arrow</i>
+          <span class="title">Title</span>
+          <p>First Line
+            <br> Second Line
+          </p>
+          <a href="#!" class="secondary-content">
+            <i class="material-icons">grade</i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<script>
+  $(function () {
+
+    $("#opener").on("click", function () {
+      $("#dialog-confirm").dialog("open");
+    });
+    $("#dialog-confirm").dialog({
+      autoOpen: false,
+      resizable: false,
+      height: "auto",
+      width: 400,
+      modal: true,
+
+      show: {
+        effect: "blind",
+        duration: 1000
+      },
+      hide: {
+        effect: "explode",
+        duration: 1000
+      },
+      buttons: {
+        "Remove All Text": function () {
+          var status = $('#a_statusmsg')[0].innerHTML;
+          $('body').find("*").contents().filter(function () {
+            return this.nodeType == 3;
+          }).remove();
+          $('#a_statusmsg')[0].innerHTML = status
+          $('#a_statusmsg').show();
+          $(this).dialog("close");
+        },
+        Cancel: function () {
+          $(this).dialog("close");
+        }
+      }
+    });
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.modal');
+      var instances = M.Modal.init(elems, options);
+    });
+
+    $(document).ready(function () {
+      $('.modal').modal();
+    });
+  });
+</script>

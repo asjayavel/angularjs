@@ -1,0 +1,203 @@
+<div aria-label="breadcrumb" class="container">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/']" class="text-dark">Home</a></li>
+    <li class="breadcrumb-item"><a [routerLink]="['/components']" class="text-dark">Components</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Dropdown</li>
+  </ol>
+</div>
+<section id="sectionid" ng-init="drop.d_shap='circle';drop.d_color='black';drop.d_color1='red';
+drop.d_coloringType='fill';drop.ply_name='trapezoid';drop.obj_width='100';drop.obj_height='100';drdwon(drop);"
+  class="container">
+  <h4 class="text-muted">Dropdowns</h4>
+  <div class="col-xl-6 col-12 col-sm-12 float-right p-0">
+    <div class="bg-light rounded p-3 ml-xl-1 w-100 mb-xl-0 mb-2" style="min-height: 50% ">
+      <div class="out-put-section"></div>
+    </div>
+  </div>
+  <div class="col-xl-6 col-12 col-sm-12 float-left p-0">
+    <form id="dropdown" class="p-xl-5 p-lg-5 p-md-4 p-sm-3 p-3 bg-light mr-xl-1" name="dropdownPage"
+      style="min-height: 50% ">
+      <fieldset>
+        <label>Select Shape</label>
+        <select name="shapes" id="shapes" class="custom-select" [(ngModel)]="drop.d_shap"
+          (ngModelChange)="drdwon(drop)">
+          <option value="circle">Circle</option>
+          <option value="square">Square</option>
+          <option value="triangle">Triangle</option>
+          <option value="ploygon">Polygon</option>
+        </select>
+      </fieldset>
+      <fieldset>
+        <label [textContent]="drop.d_shap + (drop.d_coloringType=='gradient' ? ' from' : '')+ ' color'"
+          class="text-capitalize"></label>
+        <select name="color" id="color" [(ngModel)]="drop.d_color" (ngModelChange)="drdwon(drop)" class="d-block">
+          <option *ngIf="drop.d_color1 != 'black'" value="black">Black</option>
+          <option *ngIf="drop.d_color1 != 'red'" value="red">Red</option>
+          <option *ngIf="drop.d_color1 != 'yellow'" value="yellow" selected="selected">Yellow</option>
+          <option *ngIf="drop.d_color1 != 'blue'" value="blue">Blue</option>
+          <option *ngIf="drop.d_color1 != 'green'" value="green">Green</option>
+        </select>
+      </fieldset>
+      <fieldset *ngIf="drop.d_coloringType=='gradient' && drop.d_shap != 'triangle'">
+        <label [textContent]="drop.d_shap + ' to color'" class="text-capitalize"></label>
+        <select name="color" id="color" [(ngModel)]="drop.d_color1" (ngModelChange)="drdwon(drop)" class="d-block">
+          <option *ngIf="drop.d_color1 != 'black'" value="black">Black</option>
+          <option *ngIf="drop.d_color1 != 'red'" value="red">Red</option>
+          <option *ngIf="drop.d_color1 != 'yellow'" value="yellow" selected="selected">Yellow</option>
+          <option *ngIf="drop.d_color1 != 'blue'" value="blue">Blue</option>
+          <option *ngIf="drop.d_color1 != 'green'" value="green">Green</option>
+        </select>
+      </fieldset>
+      <fieldset>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Select Coloring Type
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="javascript:void(0)"
+              (click)="drop.d_coloringType='fill';drdwon(drop)">Filled</a>
+            <a class="dropdown-item" href="javascript:void(0)" (click)="drop.d_coloringType='gradient';drdwon(drop)"
+              [ngClass]="{'disabled' : drop.d_shap == 'triangle'}">gradient</a>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset *ngIf="drop.d_shap == 'ploygon'">
+        <label>Ploygon Shapes</label>
+        <div class="input-field col s12">
+          <select name="ply-name" id="ply-name" [(ngModel)]="drop.ply_name" (ngModelChange)="drdwon(drop)"
+            class="icons">
+            <option value="trapezoid" data-icon="images/sample-1.jpg">Trapezoid</option>
+            <option value="parallelogram" data-icon="images/sample-1.jpg">Parallelogram</option>
+            <option value="rhombus" data-icon="images/sample-1.jpg">Rhombus</option>
+            <option value="pentagon" data-icon="images/sample-1.jpg">Pentagon</option>
+            <option value="hexagon" data-icon="images/sample-1.jpg">Hexagon</option>
+            <option value="heptagon" data-icon="images/sample-1.jpg">Heptagon</option>
+            <option value="octagon" data-icon="images/sample-1.jpg">Octagon</option>
+            <option value="nonagon" data-icon="images/sample-1.jpg">Nonagon</option>
+            <option value="decagon" data-icon="images/sample-1.jpg">Decagon</option>
+            <option value="bevel" data-icon="images/sample-1.jpg">Bevel</option>
+            <option value="rabbet" data-icon="images/sample-1.jpg">Rabbet</option>
+            <option value="left_arrow" data-icon="images/sample-1.jpg">Left arrow</option>
+            <option value="right_arrow" data-icon="images/sample-1.jpg">Right arrow</option>
+            <option value="left_point" data-icon="images/sample-1.jpg">Left Point</option>
+            <option value="right_point" data-icon="images/sample-1.jpg">Right Point</option>
+            <option value="left_chevron" data-icon="images/sample-1.jpg">Left Chevron</option>
+            <option value="right_chevron" data-icon="images/sample-1.jpg">Right Chevron</option>
+            <option value="star" data-icon="images/sample-1.jpg">Star</option>
+            <option value="cross" data-icon="images/sample-1.jpg">Cross</option>
+            <option value="message" data-icon="images/sample-1.jpg">Message</option>
+            <option value="close" data-icon="images/sample-1.jpg">Close</option>
+          </select>
+        </div>
+      </fieldset>
+      <fieldset>
+        <label [textContent]="drop.d_shap +' width'" class="text-capitalize"></label>
+        <div class="input-field col s12">
+          <select name="obj-width" [(ngModel)]="drop.obj_width" id="obj-width" (ngModelChange)="drdwon(drop)">
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="150">150</option>
+            <option value="200">200</option>
+            <option value="225">225</option>
+            <option value="250">250</option>
+            <option value="300">300</option>
+          </select>
+        </div>
+      </fieldset>
+      <fieldset *ngIf="drop.d_shap != 'circle'">
+        <label [textContent]="drop.d_shap +' height'" class="text-capitalize"></label>
+        <div class="input-field col s12">
+          <select name="obj-height" [(ngModel)]="drop.obj_height" id="obj-height" (ngModelChange)="drdwon(drop)">
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="150">150</option>
+            <option value="200">200</option>
+            <option value="225">225</option>
+            <option value="250">250</option>
+            <option value="300">300</option>
+          </select>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="clearfix pb-5 hide">
+    <fieldset>
+      <ul id="menu">
+        <li class="ui-state-disabled">
+          <div>Toys (n/a)</div>
+        </li>
+        <li>
+          <div>Books</div>
+        </li>
+        <li>
+          <div>Clothing</div>
+        </li>
+        <li>
+          <div>Electronics</div>
+          <ul>
+            <li class="ui-state-disabled">
+              <div>Home Entertainment</div>
+            </li>
+            <li>
+              <div>Car Hifi</div>
+            </li>
+            <li>
+              <div>Utilities</div>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <div>Movies</div>
+        </li>
+        <li>
+          <div>Music</div>
+          <ul>
+            <li>
+              <div>Rock</div>
+              <ul>
+                <li>
+                  <div>Alternative</div>
+                </li>
+                <li>
+                  <div>Classic</div>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <div>Jazz</div>
+              <ul>
+                <li>
+                  <div>Freejazz</div>
+                </li>
+                <li>
+                  <div>Big Band</div>
+                </li>
+                <li>
+                  <div>Modern</div>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <div>Pop</div>
+            </li>
+          </ul>
+        </li>
+        <li class="ui-state-disabled">
+          <div>Specials (n/a)</div>
+        </li>
+      </ul>
+    </fieldset>
+  </div>
+</section>
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('.input-field select');
+    var instances = M.FormSelect.init(elems);
+  });
+
+  $(document).ready(function () {
+    $("#menu").menu();
+    $('.input-field select').formSelect();
+  });
+</script>

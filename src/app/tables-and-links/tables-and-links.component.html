@@ -1,0 +1,413 @@
+<style>
+  .ui-dialog .ui-state-error {
+    padding: .3em;
+  }
+
+  .validateTips {
+    border: 1px solid transparent;
+    padding: 0.3em;
+  }
+
+  div.modal.custom-modal {
+    overflow-y: hidden;
+    background-color: unset;
+    max-height: unset;
+  }
+
+  div[data-angular-treeview] {
+    /* prevent user selection */
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    /* default */
+    font-family: Tahoma;
+    font-size: 15px;
+    color: #555;
+    text-decoration: none;
+  }
+
+  div[data-tree-model] ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: none;
+    overflow: hidden;
+  }
+
+  div[data-tree-model] li {
+    line-height: 20px;
+  }
+
+  div[data-tree-model] li i,
+  div[data-tree-model] li span {
+    cursor: pointer;
+  }
+
+  div[data-tree-model] li .selected {
+    background-color: #aaddff;
+    font-weight: bold;
+    padding: 1px 5px;
+  }
+</style>
+<!-- <link rel="stylesheet" type="text/css" href="plugins/materialize/css/materialize.min.css"> -->
+<div aria-label="breadcrumb" class="container">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/']">Home</a></li>
+    <li class="breadcrumb-item"><a [routerLink]="['/components']">Components</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Tables</li>
+  </ol>
+</div>
+
+<div class="container">
+  <h4 class="text-muted">Tables</h4>
+  <div id="dialog-form" title="Create new user">
+    <p class="validateTips">All form fields are required.</p>
+    <form name="c_user">
+      <fieldset>
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all">
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" value="" class="text ui-widget-content ui-corner-all">
+        <!-- Allow form submission with keyboard without duplicating the dialog button -->
+        <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+      </fieldset>
+    </form>
+  </div>
+  <div id="users-contain" class="ui-widget border rounded p-3 clearfix">
+    <label class="float-left">Existing Users</label>
+    <table id="users" class="ui-widget ui-widget-content w-100 clearfix table table-bordered">
+      <thead>
+        <tr class="ui-widget-header ">
+          <th>Name</th>
+          <th>Email</th>
+          <th>Password</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>John Doe</td>
+          <td>john.doe@example.com</td>
+          <td>johndoe1</td>
+          <td>
+            <a href="javascript:void(0);" class="fa fa-plus algin-middle addpairRow" aria-hidden="true"
+              style="text-decoration: none;"></a>
+            <span class="sep" style="padding-left:10px;padding-right:10px;"></span>
+            <a href="javascript:void(0);" class="remCF fas fa-trash algin-middle plr15" onclick="removeJsonRow(event)"
+              style="text-decoration: none;padding-right:5px"></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="table" class="bg-light p-3 mt-2 rounded">
+    <div class="font-weight-bold text-muted float-left">Daily notes</div>
+    <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#create_notes">
+      + create
+    </button>
+    <div class="table-responsive clearfix">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Time</th>
+            <th scope="col">Description</th>
+            <th scope="col">Category</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of tr_dailytaskDetails">
+            <td [textContent]="task.name"></td>
+            <td [textContent]="task.description ? task.description : '-'"></td>
+            <td [textContent]="task.date +' : ' + task.time"></td>
+            <td [textContent]="task.category ? task.category : '-'"></td>
+            <td>
+              <a>
+                <i class="fas fa-edit"></i>
+              </a>
+              <span class="sep" style="padding-left:10px;padding-right:10px;"></span>
+              <a (click)="deleteTestCase(testcase.id)">
+                <i class="fas fa-trash"></i>
+              </a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <!--New table-->
+  <!--   <div>
+    <table class="table table-bordered mt-5">
+      <tr class="ui-widget-header" style="background: none">
+        <td>
+          <md-checkbox aria-label="label" [(ngModel)]="checkall" class="m-0"></md-checkbox>
+        </td>
+        <th *ngFor="details in employees" [textContent]="details"></th>
+      </tr>
+      <tr *ngFor="stats in employee_stats" [ngClass]="{'ui-state-highlight': stats.maincheck}">
+        <td>
+          <md-checkbox aria-label="label" [(ngModel)]="stats.maincheck" ng-checked="checkall" class="m-0"></md-checkbox>
+        </td>
+        <td>
+          <input type="text" ng-value="stats.name" ng-disabled="!stats.checkedbox1" class="editbox">
+          <i class="fa fa-edit" (click)="stats.checkedbox1=!(stats.checkedbox1)"
+            [ngClass]="{'text-success':stats.checkedbox1}"></i>
+        </td>
+        <td>
+          <input type="text" ng-value="stats.id" ng-disabled="!stats.checkedbox2" class="editbox">
+          <i class="fa fa-edit" (click)="stats.checkedbox2=!(stats.checkedbox2)"
+            [ngClass]="{'text-success':stats.checkedbox2}"></i>
+        </td>
+        <td>
+          <input type="text" ng-value="stats.salary" ng-disabled="!stats.checkedbox3" class="editbox">
+          <i class="fa fa-edit" (click)="stats.checkedbox3=!(stats.checkedbox3)"
+            [ngClass]="{'text-success':stats.checkedbox3}"></i>
+        </td>
+        <td>
+          <md-button class="md-raised ui-button"
+            (click)="stats.checkedbox1=false;stats.checkedbox2=false;stats.checkedbox3=false;">Update</md-button>
+          <md-button class="md-raised ui-button" (click)="delete($index)">Delete</md-button>
+        </td>
+      </tr>
+    </table>
+    <md-button (click)="deleteselected()" class="md-raised ui-button">Delete Selected</md-button>
+  </div> -->
+
+  <div class="modal fade custom-modal w-100" id="create_notes" tabindex="-1" role="dialog"
+    aria-labelledby="daily_notes_title" aria-hidden="true" ng-init="tr_dailyinit()">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="daily_notes_title" [textContent]="'Add Daily Notes'"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="needs-validation" novalidate id="adddailyTask" ng-submit="false" name="adddailyTask" novalidate
+            onsubmit="return false;">
+            <div class="row">
+              <div class="col-md-6 section_padding_right">
+                <div class="form_group">
+                  <label for="name">Name</label>
+                  <input class="form-control form_no_border" [(ngModel)]="tr_daily.name" maxlength="100" name="name"
+                    id="name" type="text" ng-required="true">
+                  <small class="contador_caracteres" id="name_count">0/100</small>
+                  <div class="invalid-tooltip">
+                    Please choose a unique and valid username.
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 section_padding_right">
+                <div class="form_group margin_top_row">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="input-group">
+                        <label for="date"> Date</label>
+                        <input type="text" class="datepicker" [(ngModel)]="tr_daily.date" ng-required="true"
+                          name="date">
+                        <div class="invalid-tooltip">
+                          Please choose a unique and valid username.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="input-group">
+                        <label class="label_form" for="time">Time</label>
+                        <input type="text" class="timepicker" [(ngModel)]="tr_daily.time" ng-required="true"
+                          name="time">
+                        <div class="invalid-tooltip">
+                          Please choose a unique and valid username.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 section_padding_left">
+                <label for="category">Category</label>
+                <div class="input-group">
+                  <select class="custom-select" id="inputGroupSelect04" [(ngModel)]="tr_daily.category" name="category">
+                    <option selected>Choose...</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="row margin_top_row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea class="form-control" maxlength="500" name="description" rows="4" id="description"
+                  [(ngModel)]="tr_daily.description" ng-required="true"></textarea>
+                <small class="contador_caracteres" id="contador_textarea">0/500</small>
+                <div class="invalid-tooltip">
+                  Please choose a unique and valid username.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="tr_dailytask(adddailyTask)">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex flex-wrap border clearfix my-3">
+    <div class="py-3 px-4 border-bottom col-12" style="font:12px Tahoma;">
+      <span><b>Selected User Role</b> : {{currentNode.roleName}}</span>
+    </div>
+    <div class="py-3 col-4 p-0 float-left bg-light">
+      <fieldset>
+        <label [textContent]="'select color'" class="text-capitalize"></label>
+        <select name="color" id="color" [(ngModel)]="selected_tree" (ngModelChange)="change_tree(selected_tree)"
+          class="d-block">
+          <option value="{{testers}}">Testers</option>
+          <option value="{{foods}}">Foods</option>
+          <option value="{{transport}}">Transport</option>
+        </select>
+      </fieldset>
+      <div data-angular-treeview="true" data-tree-model="roleList" data-node-id="roleId" data-node-label="roleName"
+        data-node-children="children">
+      </div>
+    </div>
+    <div class="col-8 float-right h-100 d-flex flex-wrap py-3 align-content-start">
+      <div *ngFor="let currentRole of currentNode.children" class="col-3 text-center pb-3">
+        <i class="fas fa-4x"
+          [ngClass]="{'fa-folder' : currentRole.children.length , 'fa-file-invoice' : !currentRole.children.length}"></i>
+        <div class="text-center" [textContent]="currentRole.roleName"></div>
+      </div>
+      <div *ngIf="!currentNode.children.length" class="col-3 text-center">
+        <i class="fas fa-4x fa-file-invoice"></i>
+        <div class="text-center" [textContent]="currentNode.roleName"></div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="plugins/materialize/js/materialize.min.js"></script>
+  <script>
+    $(function () {
+      var dialog, form,
+        emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+        name = $("#name"),
+        email = $("#email"),
+        password = $("#password"),
+        allFields = $([]).add(name).add(email).add(password),
+        tips = $(".validateTips");
+
+      function updateTips(t) {
+        tips
+          .text(t)
+          .addClass("ui-state-highlight");
+        setTimeout(function () {
+          tips.removeClass("ui-state-highlight", 1500);
+        }, 500);
+      }
+
+      function checkLength(o, n, min, max) {
+        if (o.val().length > max || o.val().length < min) {
+          o.addClass("ui-state-error");
+          updateTips("Length of " + n + " must be between " +
+            min + " and " + max + ".");
+          return false;
+        } else {
+          return true;
+        }
+      }
+
+      function checkRegexp(o, regexp, n) {
+        if (!(regexp.test(o.val()))) {
+          o.addClass("ui-state-error");
+          updateTips(n);
+          return false;
+        } else {
+          return true;
+        }
+      }
+
+      function addUser() {
+        var valid = true;
+        allFields.removeClass("ui-state-error");
+
+        valid = valid && checkLength(name, "username", 3, 16);
+        valid = valid && checkLength(email, "email", 6, 80);
+        valid = valid && checkLength(password, "password", 5, 16);
+
+        valid = valid && checkRegexp(name, /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter.");
+        valid = valid && checkRegexp(email, emailRegex, "eg. ui@jquery.com");
+        valid = valid && checkRegexp(password, /^([0-9a-zA-Z])+$/, "Password field only allow : a-z 0-9");
+
+        if (valid) {
+          $("#users tbody").append("<tr>" +
+            "<td>" + name.val() + "</td>" +
+            "<td>" + email.val() + "</td>" +
+            "<td>" + password.val() + "</td>" +
+            '<td><a href="javascript:void(0);" class="fa fa-plus algin-middle addpairRow" aria-hidden="true" style="text-decoration: none;"></a><span class="sep" style="padding-left:10px;padding-right:10px;"></span><a href="javascript:void(0);" class="remCF fas fa-trash algin-middle plr15"  onclick="removeJsonRow(event)"  style="text-decoration: none;padding-right:5px"></a></td>' +
+            "</tr>");
+
+          $("a.fa.fa-plus").button().on("click", function () {
+            dialog.dialog("open");
+          });
+          dialog.dialog("close");
+        }
+        return valid;
+      }
+
+      dialog = $("#dialog-form").dialog({
+        autoOpen: false,
+        height: 600,
+        width: 500,
+        modal: true,
+        buttons: {
+          "Create an account": addUser,
+          Cancel: function () {
+            dialog.dialog("close");
+          }
+        },
+        close: function () {
+          form[0].reset();
+          allFields.removeClass("ui-state-error");
+        }
+      });
+
+      form = dialog.find("form").on("submit", function (event) {
+        event.preventDefault();
+        addUser();
+      });
+
+      $("a.fa.fa-plus").button().on("click", function () {
+        dialog.dialog("open");
+      });
+
+      document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.datepicker');
+        var instances = M.Datepicker.init(elems);
+      });
+
+      // Or with jQuery
+
+      $(document).ready(function () {
+        $('.datepicker').datepicker();
+      });
+      document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.timepicker');
+        var instances = M.Timepicker.init(elems);
+      });
+
+      // Or with jQuery
+
+      $(document).ready(function () {
+        $('.timepicker').timepicker();
+      });
+    });
+  </script>

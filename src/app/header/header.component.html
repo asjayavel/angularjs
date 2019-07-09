@@ -1,0 +1,22 @@
+<header id="masthead" class="site-header navbar-fixed-top" role="banner" *ngIf="!isHeaderHide">
+    <nav id="sticky_head"
+        class="navbar navbar-default navbar-fixed-top fixed-top navbar-fixed-bg px-xl-5 px-lg-5 px-md-4 px-sm-2 px-2"
+        style="height: unset;line-height: unset;">
+        <div class="navbar-header d-flex align-items-center w-75">
+            <a class="navbar-brand p0 m-0 w-100" [routerLink]="['/']" id="logo-img">
+                <div class="ts-logo w-100"></div>
+            </a>
+        </div>
+        <ul class="nav nav-pills d-flex">
+
+            <li class="nav-item">
+
+                <a class="nav-link text-dark" [routerLink]="['/login']">Login</a>
+
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" [routerLink]="['/signup']">Signup</a>
+            </li>
+        </ul>
+    </nav>
+</header>

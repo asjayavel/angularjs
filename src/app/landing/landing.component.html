@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center flex-wrap">
+  <div class="flex-fill d-flex justify-content-center p-3 pt-5" style="flex: 1 1 100%!important">
+    <h3>Try out Testing with Testsigma's Demo website!</h3>
+  </div>
+  <div
+    class="d-flex justify-content-center align-center col-12 p-0 px-2 px-xl-0 pt-xl-5 pt-2 m-auto flex-xl-row flex-column">
+    <article
+      class="d-flex justify-content-cenetr flex-column position-relative border rounded text-center bg-white mx-xl-3 p-3 col-xl-4 col-12"
+      style="min-height: 200px;overflow: hidden;cursor: pointer;"
+      onclick="window.open('http://travel.testsigma.com','_blank')">
+      <div class="flex-fill">
+        <img src="../../assets/images/t_logo.svg" class="tileImg" alt="">
+      </div>
+      <div>
+        <h5>
+          Demo Air Ticket Booking Application
+        </h5>
+        <div class="text-muted pb-2" style="font-size:.8rem">
+          Explore Simply Travel designed for online flight journey planning and booking
+
+        </div>
+        <a class="btn btn-secondary text-white">
+          <span>Go to Travel</span>
+        </a>
+      </div>
+    </article>
+    <article
+      class="d-flex justify-content-cenetr flex-column position-relative border rounded text-center bg-white mx-xl-3 p-3 col-xl-4 col-12 mt-2 mt-xl-0"
+      style="min-height: 200px;overflow: hidden;">
+      <a [routerLink]="['/components']">
+        <div class="flex-fill d-flex align-items-center align-content-center">
+          <img src="../../assets/images/c_log.svg" class="tileImg" alt="" style="width: 100%">
+        </div>
+        <div>
+          <h5>
+            Sample Components
+          </h5>
+          <div class="text-muted pb-2" style="font-size:.8rem">
+            Sample elements or components to try out Automation Testing.
+          </div>
+          <a class="btn btn-secondary text-white" [routerLink]="['/components']">
+            <span>Go to Components</span>
+          </a>
+        </div>
+      </a>
+    </article>
+  </div>
+</div>

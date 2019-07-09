@@ -1,0 +1,102 @@
+<html>
+
+<head>
+  <style type="text/css">
+    .w-xl-25 {
+      width: 25%;
+    }
+
+    @media only screen and (max-width: 768px) {
+      .w-xl-25.w-sm-90 {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+
+<body class="mt-5">
+  <div id="logo" class="text-center" onclick="window.location.replace(window.location.origin)"><img
+      src="../../assets/images/logo.svg" alt="logo image" class="bg-white rounded w-xl-25 w-sm-90"></div>
+  <div id="container">
+    <form id="loginform" action="/" method="Get" class="w-xl-25 w-sm-90 mx-auto px-4 py-5 mt-4 rounded shadow bg-white"
+      novalidate>
+      <div class="text-center text-muted" id="suggestion" style="display: none;">User name <span
+          class="text-danger">admin</span> Password
+        <span class="text-danger">12345</span></div>
+      <div class="alert alert-success text-center" role="alert" id="suggestion1" style="display: none;">
+        <i class="fas fa-check-circle"></i><span class="font-weight-bold fa-2x">Success !</span>
+        <div class="msg">
+          <p>A password reset message was sent to your email
+            address. Please click the link in that message to reset
+            your password.
+          </p>
+          <p>
+            If you do not see it yet, please also check your spam folder.
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field w-100 email_section">
+          <i class="material-icons prefix">email</i>
+          <input id="first_name" name="name" type="text" class="validate" required>
+          <label for="first_name" id="firstname_lable">User Name / Email</label>
+        </div>
+        <div class="input-field w-100 password_section">
+          <i class="material-icons prefix">vpn_key</i>
+          <input id="password" name="password" class="validate" type="password" required>
+          <label for="password" id="password_lable">Password</label>
+        </div>
+      </div>
+      <a href="javascript:void(0)" class="float-left" onclick="resetpassword()">Forgot your password?</a>
+
+      <a [routerLink]="['/signup']" class="float-right">Signup</a>
+      <div class="text-center clearfix pt-5 action_section">
+        <button class="btn waves-effect waves-light" id="btn-login" type="submit" name="action" onclick="login()">Login
+          <i class="material-icons right">send</i>
+        </button>
+        <button class="btn waves-effect waves-light" id="btn-reset" name="reset" onclick="resetps()"
+          style="display: none;">Submit
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+    </form>
+  </div>
+  <!-- <script type="text/javascript" src="plugins/materialize/js/materialize.min.js"></script> -->
+  <!--   <script type="text/javascript">
+
+    function login() {
+      var input_field = $('#loginform').find(':input:not(:hidden)');
+      for (var i = 0; i < input_field.length - 1; i++) {
+        if (i == 0 && $(input_field[i]).val() != 'admin') {
+          event.preventDefault();
+          $('#suggestion').show();
+          return false;
+        } else if (i == 1 && $(input_field[i]).val() != '12345') {
+          event.preventDefault();
+          $('#suggestion').show();
+          return false;
+        }
+      }
+    }
+
+    function resetpassword() {
+      $('.password_section').hide('slow');
+      $('#suggestion').hide('slow');
+      $('#btn-login').hide('slow');
+      $('#btn-reset').show('slow');
+    }
+
+    function resetps() {
+      event.preventDefault();
+      if ($('#first_name').val()) {
+        $('.action_section').hide('slow');
+        $('#suggestion1').show('slow');
+        $('.email_section').hide('slow');
+        return false;
+      }
+      return false;
+    }
+  </script> -->
+</body>
+
+</html>

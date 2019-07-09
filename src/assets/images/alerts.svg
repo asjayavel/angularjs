@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 300 150" style="enable-background:new 0 0 300 150;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#SVGID_1_);}
+	.st1{fill:url(#SVGID_2_);}
+	.st2{fill:#FFFFFF;}
+	.st3{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+	.st4{fill:url(#SVGID_3_);}
+	.st5{font-family:'MyriadPro-Regular';}
+	.st6{font-size:12px;}
+</style>
+<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="69" y1="33" x2="235" y2="33">
+	<stop  offset="2.024560e-07" style="stop-color:#1DCB8B"/>
+	<stop  offset="1" style="stop-color:#000000"/>
+</linearGradient>
+<rect x="69" y="24" class="st0" width="166" height="18"/>
+<g>
+	<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="67" y1="76" x2="237" y2="76">
+		<stop  offset="2.024560e-07" style="stop-color:#1DCB8B"/>
+		<stop  offset="1" style="stop-color:#000000"/>
+	</linearGradient>
+	<path class="st1" d="M231.3,25c0.9,0,1.7,0.8,1.7,1.7v98.6c0,0.9-0.8,1.7-1.7,1.7H72.7c-0.9,0-1.7-0.8-1.7-1.7V26.7
+		c0-0.9,0.8-1.7,1.7-1.7H231.3 M231.3,21H72.7c-3.2,0-5.7,2.6-5.7,5.7v98.6c0,3.2,2.6,5.7,5.7,5.7h158.6c3.2,0,5.7-2.6,5.7-5.7V26.7
+		C237,23.6,234.4,21,231.3,21L231.3,21z"/>
+</g>
+<g>
+	<rect x="73" y="31" class="st2" width="157" height="6"/>
+</g>
+<circle class="st3" cx="72.5" cy="26.5" r="2"/>
+<circle class="st3" cx="78.5" cy="26.5" r="2"/>
+<circle class="st3" cx="84.5" cy="26.5" r="2"/>
+<g>
+	<linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="97" y1="77.5" x2="202" y2="77.5">
+		<stop  offset="2.024560e-07" style="stop-color:#1DCB8B"/>
+		<stop  offset="1" style="stop-color:#000000"/>
+	</linearGradient>
+	<path class="st4" d="M197.4,90h-95.8c-2.5,0-4.6-2.1-4.6-4.6V69.6c0-2.5,2.1-4.6,4.6-4.6h95.8c2.5,0,4.6,2.1,4.6,4.6v15.8
+		C202,87.9,199.9,90,197.4,90z"/>
+</g>
+<path class="st2" d="M118.7,81.8l6.7-11.7c0.3-0.5,1-0.5,1.2,0l5.9,11.7c0.3,0.5-0.1,1.1-0.7,1.1h-12.4
+	C118.7,83,118.4,82.4,118.7,81.8z"/>
+<text transform="matrix(1 0 0 1 124.3159 81.8379)" class="st5 st6">!</text>
+<text transform="matrix(1 0 0 1 135.8262 81.1289)" class="st2 st5 st6">ALERTS</text>
+</svg>

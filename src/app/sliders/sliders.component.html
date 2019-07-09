@@ -1,0 +1,365 @@
+<nav aria-label="breadcrumb" class="container">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/']">Home</a></li>
+    <li class="breadcrumb-item"><a [routerLink]="['/components']">Components</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Slider</li>
+  </ol>
+</nav>
+<div class="container">
+  <h3 class="text-muted font-weight-bold"> Slider components</h3>
+</div>
+<div class="container p-0 bg-light rounded h-50 clearfix">
+  <div class="float-left col-xl-6 col-12 col-sm-12">
+    <ul class="list-unstyled" id="values">
+      <li class="py-3">
+        <label class="w-100">
+          <span>size</span>
+          <input class="align-middle w-75" name="size" type="range" min="0" max="400" step="any" value="200" />
+        </label>
+      </li>
+      <li class="py-3">
+        <label class="w-100">
+          <span>height</span>
+          <input class="align-middle w-75" name="height" type="range" min="0" max="2" step="any" value="0.5" />
+        </label>
+      </li>
+      <li class="py-3">
+        <label class="w-100">
+          <span>angle</span>
+          <input class="align-middle w-75" name="angle" type="range" min="-1" max="1" step="any" value="0" />
+        </label>
+      </li>
+    </ul>
+    <ul id="direction" class="list-unstyled">
+      <li class="d-inline-block p-1">
+        <label class="m-0">
+          <input class="d-none" type="radio" name="dir" value="top" checked />
+          <span class="d-block bg-secondary align-middle p-0 text-center">↑</span>
+        </label>
+      </li>
+      <li class="d-inline-block p-1">
+        <label class="m-0">
+          <input class="d-none" type="radio" name="dir" value="right" />
+          <span class="d-block bg-secondary align-middle p-0 text-center">→</span>
+        </label>
+      </li>
+      <li class="d-inline-block p-1">
+        <label class="m-0">
+          <input class="d-none" type="radio" name="dir" value="bottom" />
+          <span class="d-block bg-secondary align-middle p-0 text-center">↓</span>
+        </label>
+      </li>
+      <li class="d-inline-block p-1">
+        <label class="m-0">
+          <input class="d-none" type="radio" name="dir" value="left" />
+          <span class="d-block bg-secondary align-middle p-0 text-center">←</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+  <div class="col-xl-6 col-12 col-sm-12 float-left h-100" style="overflow-y: auto;">
+    <div id="triangle"></div>
+  </div>
+</div>
+<div class="clearfix bg-light rounded container py-3 mt-3 d-flex flex-wrap">
+  <div class="col-xl-6 col-12 col-sm-12 float-left py-3 align-items-center align-content-center">
+    <div id="slider"></div>
+  </div>
+  <div class="col-xl-6 col-12 col-sm-12 float-left py-3">
+    <div id="time-range">
+      <p>Time Range: <span class="slider-time">9:00 AM</span> - <span class="slider-time2">5:00 PM</span>
+      </p>
+      <div class="sliders_step1">
+        <div id="slider-range"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container p-0 clearfix py-3">
+  <div class="col-xl-6 col-12 col-sm-12 float-left mr-xl-2 border rounded h-50 p-3">
+    <section id="slider_minimum" class="float-left col-12 p-0">
+      <span>
+        Set min value:
+      </span>
+      <input class="px-1 w-25 rounded" id="set_minvalue" min="0" max="10" type="number" pattern="[0-9.]+" value="4" />
+    </section>
+    <article id="slider_container" class="middle-center-container slider-container float-left bg-light">
+      <section id="slider_tooltip" class="slider-tooltip d-block rounded bg-dark">
+        <span class="w-100 text-center d-block align-middle text-white">
+          Drag me
+        </span>
+      </section>
+      <section id="slider_bars" class="middle-center-container slider-bars w-100 h-50 px-4">
+        <div id="slider_drag" class="slider-drag w-75" data-min-range="4">
+        </div>
+        <span id="slider_value" class="slider-value">
+        </span>
+      </section>
+    </article>
+  </div>
+  <div class="float-left col-xl-5 col-12 col-sm-12 ml-xl-2 border rounded p-3 h-50">
+    <!--     <div class="map-icon">
+    <span class="fa fa-map-marker"></span>
+</div> -->
+    <div class="map-slider bg-light rounded text-center m-auto">
+      <div class="buttons">
+        <span class="fa fa-plus"></span>
+        <div class="drag-line">
+          <div class="line"></div>
+          <div class="draggable-button"></div>
+        </div>
+        <div class="draggable-buton"></div>
+        <span class="fa fa-minus"></span>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(function () {
+    $('#slider_drag').slider({
+      range: 'min',
+      value: $('#slider_drag').attr('data-min-range') * 100,
+      min: 0,
+      max: 1000,
+      slide: function (event, ui) {
+        var slideVal = ui.value / 100,
+          slideMinVal = parseInt($('#slider_drag').attr('data-min-range'));
+        if (slideVal <= slideMinVal) { return false; }
+        $('#slider_value').text(slideVal);
+        $('#slider_tooltip').css({ 'left': parseInt($('.ui-slider-handle').css('left')) - 35 + 'px' });
+      },
+      change: function (event, ui) {
+        $('#slider_tooltip').css({ 'left': parseInt($('.ui-slider-handle').css('left')) - 35 + 'px' });
+      }
+    });
+    $('#slider_value').text($('#slider_drag').slider('value') / 100);
+    $('#slider_tooltip').css({ 'left': parseInt($('.ui-slider-handle').css('left')) - 35 + 'px' });
+
+    $('#set_minvalue').on('change', function () {
+      var minValue = $(this).val();
+      if (minValue < 0 || minValue > 10) {
+        $(this).val($('#slider_drag').slider('value') / 100);
+        return false;
+      }
+      $('#slider_drag').attr('data-min-range', minValue).slider('value', minValue * 100);
+      $('#slider_value').text(minValue);
+    });
+    var lineHeight = ($('.drag-line').height()) - 15;
+
+    $('.draggable-button').draggable({
+      axis: 'y',
+      containment: 'parent'
+    });
+
+    $('.draggable-button').on('drag', function () {
+      var position = $('.draggable-button').position();
+      var marginTop = position.top;
+      $('.line').css({
+        'clip': 'rect(' + marginTop + 'px,8px, 183px,0px)'
+      });
+
+    });
+
+
+    $('.fa-minus').on('click', function () {
+      var position = $('.draggable-button').position();
+      var marginTop = position.top;
+
+      $('.line').css({
+        'clip': 'rect(' + (marginTop + 14) + 'px,8px, 183px,0px)'
+      });
+
+      if (marginTop < lineHeight) {
+        $('.draggable-button').css({
+          'top': marginTop + 14
+        });
+
+      }
+    });
+
+    $('.fa-plus').on('click', function () {
+      var position = $('.draggable-button').position();
+      var marginTop = position.top;
+
+      $('.line').css({
+        'clip': 'rect(' + (marginTop - 14) + 'px,8px, 183px,0px)'
+      });
+
+      if (marginTop > 0) {
+
+        $('.draggable-button').css({
+          'top': marginTop - 14
+        });
+      }
+    });
+
+
+
+    $("#slider-range").slider({
+      range: true,
+      min: 0,
+      max: 1440,
+      step: 15,
+      values: [540, 1020],
+      slide: function (e, ui) {
+        var hours1 = Math.floor(ui.values[0] / 60);
+        var minutes1 = ui.values[0] - (hours1 * 60);
+
+        if (hours1.length == 1) hours1 = '0' + hours1;
+        if (minutes1.length == 1) minutes1 = '0' + minutes1;
+        if (minutes1 == 0) minutes1 = '00';
+        if (hours1 >= 12) {
+          if (hours1 == 12) {
+            hours1 = hours1;
+            minutes1 = minutes1 + " PM";
+          } else {
+            hours1 = hours1 - 12;
+            minutes1 = minutes1 + " PM";
+          }
+        } else {
+          hours1 = hours1;
+          minutes1 = minutes1 + " AM";
+        }
+        if (hours1 == 0) {
+          hours1 = 12;
+          minutes1 = minutes1;
+        }
+
+
+
+        $('.slider-time').html(hours1 + ':' + minutes1);
+
+        var hours2 = Math.floor(ui.values[1] / 60);
+        var minutes2 = ui.values[1] - (hours2 * 60);
+
+        if (hours2.length == 1) hours2 = '0' + hours2;
+        if (minutes2.length == 1) minutes2 = '0' + minutes2;
+        if (minutes2 == 0) minutes2 = '00';
+        if (hours2 >= 12) {
+          if (hours2 == 12) {
+            hours2 = hours2;
+            minutes2 = minutes2 + " PM";
+          } else if (hours2 == 24) {
+            hours2 = 11;
+            minutes2 = "59 PM";
+          } else {
+            hours2 = hours2 - 12;
+            minutes2 = minutes2 + " PM";
+          }
+        } else {
+          hours2 = hours2;
+          minutes2 = minutes2 + " AM";
+        }
+
+        $('.slider-time2').html(hours2 + ':' + minutes2);
+      }
+    });
+
+
+
+    function collision($div1, $div2) {
+      var x1 = $div1.offset().left;
+      var w1 = 40;
+      var r1 = x1 + w1;
+      var x2 = $div2.offset().left;
+      var w2 = 40;
+      var r2 = x2 + w2;
+
+      if (r1 < x2 || x1 > r2) return false;
+      return true;
+
+    }
+
+    // // slider call
+
+    $('#slider').slider({
+      range: true,
+      min: 0,
+      max: 500,
+      values: [75, 300],
+      slide: function (event, ui) {
+
+        $('.ui-slider-handle:eq(0) .price-range-min').html('$' + ui.values[0]);
+        $('.ui-slider-handle:eq(1) .price-range-max').html('$' + ui.values[1]);
+        $('.price-range-both').html('<i>$' + ui.values[0] + ' - </i>$' + ui.values[1]);
+
+        //
+
+        if (ui.values[0] == ui.values[1]) {
+          $('.price-range-both i').css('display', 'none');
+        } else {
+          $('.price-range-both i').css('display', 'inline');
+        }
+
+        //
+
+        if (collision($('.price-range-min'), $('.price-range-max')) == true) {
+          $('.price-range-min, .price-range-max').css('opacity', '0');
+          $('.price-range-both').css('display', 'block');
+        } else {
+          $('.price-range-min, .price-range-max').css('opacity', '1');
+          $('.price-range-both').css('display', 'none');
+        }
+
+      }
+    });
+
+    $('.ui-slider-range').append('<span class="price-range-both value"><i>$' + $('#slider').slider('values', 0) + ' - </i>' + $('#slider').slider('values', 1) + '</span>');
+
+    $('.ui-slider-handle:eq(0)').append('<span class="price-range-min value">$' + $('#slider').slider('values', 0) + '</span>');
+
+    $('.ui-slider-handle:eq(1)').append('<span class="price-range-max value">$' + $('#slider').slider('values', 1) + '</span>');
+
+    const rng = document.querySelectorAll('#values input[type=range]')
+    const tri = document.querySelector('#triangle')
+    const val = {}
+    const bdr = ['top', 'right', 'bottom', 'left']
+    let dir = document.querySelectorAll('#direction input')
+    $.each(rng, function (index, elm) {
+      val[elm.name] = +elm.value
+    })
+
+    draw()
+
+    $.each(rng, function (index, elm) {
+      elm.addEventListener('input', function () {
+        val[elm.name] = +elm.value
+        draw()
+      })
+    })
+    $.each(dir, function (index, elm) {
+      elm.addEventListener('change', () => {
+        dir = elm.value
+        while (bdr[0] !== dir)
+          bdr.push(bdr.shift())
+        draw()
+      })
+    })
+
+    dir = $.each(dir, function (index, elm) { return elm.checked }).value
+
+    draw()
+
+    function draw() {
+      let style = ''
+      const css = {
+        width: '0',
+        height: '0',
+        border: '0 solid transparent'
+      }
+      css['border-' + bdr[1] + '-width'] = Math.round(val.size * (val.angle + 1) / 2) + 'px'
+      css['border-' + bdr[3] + '-width'] = Math.round(val.size * (-val.angle + 1) / 2) + 'px'
+      css['border-' + bdr[2]] = Math.round(val.size * val.height) + 'px solid black'
+
+      Object.assign(tri.style, css)
+
+      $.each(Object.entries(css), function (k, v) {
+        v = v[1].replace(/(\d+(px)?)/g, '<span class="size">$1</span>')
+        style += '<span class="prop">' + v[0] + '</span>: <span class="value">' + v + '</span>;\n'
+      })
+
+    }
+
+
+  });
+</script>

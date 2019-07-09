@@ -1,0 +1,73 @@
+<nav aria-label="breadcrumb" class="container">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/']">Home</a></li>
+    <li class="breadcrumb-item"><a href="javascript:void(0)" onclick="open_redirect('components');">Components</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Frames</li>
+  </ol>
+</nav>
+<div class="container">
+  <h4 class="text-muted"> Frames</h4>
+  <div class="col-12 p-0 clearfix">
+    <div class="col-12 col-sm-12 p-0 float-left mb-2">
+      <div class="d-flex flex-xl-row flex-wrap justify-content-center clearfix">
+        <div class="float-left p-0">
+          <div class="px-4 py-2 m-1"
+            [ngClass]="{'bg-success text-white' : showcontent_section === 'first', 'bg-light' :  showcontent_section !== 'first'}"
+            style="border-radius: 30px">
+            <div class="font-weight-bold text-center" (click)="fr_showContent('first')">Autocomplete and Select</div>
+          </div>
+        </div>
+        <div class="float-left p-0">
+          <div class="px-4 py-2 m-1"
+            [ngClass]="{'bg-success text-white' : showcontent_section === 'second', 'bg-light' :  showcontent_section !== 'second'}"
+            style="border-radius: 30px">
+            <div class="font-weight-bold text-center" (click)="fr_showContent('second')">Chips and Pickers</div>
+          </div>
+        </div>
+        <div class="float-left p-0">
+          <div class="px-4 py-2 m-1"
+            [ngClass]="{'bg-success text-white' : showcontent_section === 'third', 'bg-light' :  showcontent_section !=='third'}"
+            style="border-radius: 30px">
+            <div class="font-weight-bold text-center" (click)="fr_showContent('third')">Boolen Buttons</div>
+          </div>
+        </div>
+        <div class="float-left p-0">
+          <div class="px-4 py-2 m-1"
+            [ngClass]="{'bg-success text-white' : showcontent_section === 'fourth', 'bg-light' :  showcontent_section !== 'fourth'}"
+            style="border-radius: 30px">
+            <div class="font-weight-bold text-center" (click)="fr_showContent('fourth')">Text Inputs</div>
+          </div>
+        </div>
+      </div>
+    </div>{{frame_urls}}
+    <div class="col-12 col-sm-12 p-0 float-left">
+      <div *ngIf="showcontent_section === 'first'" class=" ml-xl-4 d-flex justify-content-center">
+        <iframe [src]="frame_urls[0]"
+          class="border-0 h-75 col-xl-5 col-sm-12 col-12 float-left bg-light rounded p-3"></iframe>
+        <iframe [src]="frame_urls[1]"
+          class="border-0 col-xl-6 col-sm-12 col-12  h-75 float-left bg-light rounded p-3 ml-xl-2 mt-2 mt-xl-0"></iframe>
+      </div>
+      <div *ngIf="showcontent_section === 'second'" class=" ml-xl-4 d-flex justify-content-center">
+        <iframe [src]="frame_urls[2]"
+          class="border-0 col-xl-5 col-sm-12 col-12 h-75 float-left bg-light rounded p-3 mr-xl-1"></iframe>
+        <iframe [src]="frame_urls[3]"
+          class="border-0 col-xl-6 col-sm-12 col-12 h-75 float-left bg-light rounded p-3 mt-2 mt-xl-0"></iframe>
+      </div>
+      <div *ngIf="showcontent_section === 'third'" class=" ml-xl-4 d-flex justify-content-center flex-wrap">
+        <iframe [src]="frame_urls[4]"
+          class="border-0 h-50  col-xl-5 col-sm-12 col-12 float-left bg-light rounded p-3 mr-xl-1  mt-2 mt-xl-0"></iframe>
+        <iframe [src]="frame_urls[5]"
+          class="border-0 col-xl-6 col-sm-12 col-12 h-50 float-left bg-light rounded-top px-3 pt-3 pb-3 mt-2 mt-xl-0"></iframe>
+        <div class="clearfix"></div>
+        <iframe [src]="frame_urls[6]"
+          class="border-0 col-xl-5 col-sm-12 col-12 h-50 float-left bg-light rounded p-3 mr-xl-1 mt-2"></iframe>
+        <iframe [src]="frame_urls[7]"
+          class="border-0 col-xl-6 col-sm-12 col-12 h-50 float-left bg-light rounded px-3 pt-3 pb-3 mt-2"></iframe>
+      </div>
+      <div *ngIf="showcontent_section === 'fourth'" class=" ml-xl-4 d-flex justify-content-center">
+        <iframe [src]="frame_urls[7]" class="border-0 w-100 h-100 float-left bg-light rounded p-3"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+<script [src]="static/js/drop.js"></script>

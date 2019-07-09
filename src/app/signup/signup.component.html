@@ -1,0 +1,225 @@
+<html>
+
+<head>
+  <style type="text/css">
+    .w-xl-25 {
+      width: 25%;
+    }
+
+    @media only screen and (max-width: 768px) {
+      .w-xl-25.w-sm-90 {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+
+<body class="mt-5">
+  <div class="container justify-content-start bg-white p-xl-5 p-lg-5 p-md-4 p-sm-3 p-3">
+    <div id="logo" class="text-center" onclick="window.location.replace(window.location.origin)"><img
+        src="../../assets/images/logo.svg" alt="logo image" class="bg-white rounded w-xl-25 w-sm-90"></div>
+    <h6 class="text-muted text-center">Sign up with Demo </h6>
+    <p class="text-muted text-center">Have an account already? <a [routerLink]="['/login']">Log in</a></p>
+    <form id="formid" class="needs-validation col-12 p-0" name="adduser" action="/" method="GET">
+      <h3 [textContent]="'Patner Resigter prefession Information'" class="font-weight-bold"></h3>
+      <div class="form-row justify-content-between">
+        <div class="col-md-6 mb-3 pr-xl-4 pr-lg-4 pr-md-3">
+          <label for="name">Full name</label>
+          <input title="fullname" id="name" type="text" name="name" placeholder=" Full Name" required
+            class="form-control fa">
+          <div class="invalid-tooltip">
+            This filed is required
+          </div>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-md-6 mb-3 pl-xl-4 pl-lg-4 pl-md-3">
+          <label for="emailid">Email</label>
+          <input class="form-control fa" title="emailid" id="emailid" type="email" name="emailid"
+            placeholder=" Example@gmail.com" required>
+          <div class="invalid-tooltip">
+            This filed is required
+          </div>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-6 mb-3 pr-xl-4 pr-lg-4 pr-md-3">
+          <label for="phone">Phone</label>
+          <input class="form-control fa" title="phone" id="phone" type="tel" placeholder=" Phone no" name="phone"
+            required>
+          <div class="invalid-tooltip">
+            This filed is required
+          </div>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-md-6 mb-3 pl-xl-4 pl-lg-4 pl-md-3">
+          <label for="address">Address</label>
+          <input title="address" id="address" name="address" placeholder="  Enter your address" class="form-control fa"
+            required="">
+          <div class="invalid-tooltip">
+            This filed is required
+          </div>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-6 mb-3 pr-xl-4 pr-lg-4 pr-md-3">
+          <label>Age Group</label>
+          <div class="col-12 flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column d-flex">
+            <div class="form-check form-check-inline">
+              <label>
+                <input title="young" id="young" type="radio" name="age" value="young" checked="" />
+                <span>Below 25</span>
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <label>
+                <input title="middle" id="middle" type="radio" name="age" value="middle" />
+                <span>26 to 55</span>
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <label>
+                <input title="old" id="old" type="radio" name="age" value="old" />
+                <span>Above 55</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-3 pl-xl-4 pl-lg-4 pl-md-3">
+          <label>Gender</label>
+          <div class="col-12 flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column d-flex">
+            <div class="custom-control custom-radio custom-control-inline">
+              <input class="custom-control-input" title="male" id="genderMale" type="radio" name="gender" value="male"
+                checked="">
+              <label class="custom-control-label" for="genderMale">Male</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input class="custom-control-input" title="female" id="genderFemale" type="radio" name="gender"
+                value="female">
+              <label class="custom-control-label" for="genderFemale">Female</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input class="custom-control-input" title="other" id="genderOther" type="radio" name="gender"
+                value="other">
+              <label class="custom-control-label" for="genderOther">Other</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-6 mb-3 pr-xl-4 pr-lg-4 pr-md-3">
+          <label>Hobbies</label>
+          <div class="col-12 flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column d-flex">
+            <div class="form-check form-check-inline">
+              <label>
+                <input type="checkbox" title="cricket" id="hobby-cricket" type="checkbox" name="hobby" value="cricket"
+                  checked="" />
+                <span>cricket</span>
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <label>
+                <input type="checkbox" title="movies" id="hobby-movies" type="checkbox" name="hobby" value="movies" />
+                <span>movies</span>
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <label>
+                <input type="checkbox" title="hockey" id="hobby-hockey" type="checkbox" name="hobby" value="hockey" />
+                <span>hockey</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-3 pl-xl-4 pl-lg-4 pl-md-3">
+          <label>Interests</label>
+          <div class="col-12 flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column d-flex">
+            <div class="custom-control custom-checkbox custom-control-inline">
+              <input class="custom-control-input" title="Job" id="interest-job" type="checkbox" name="Job" value="job"
+                checked="">
+              <label class="custom-control-label" for="interest-job">Job</label>
+            </div>
+            <div class="custom-control custom-checkbox custom-control-inline">
+              <input class="custom-control-input" title="Business" id="interest-business" type="checkbox"
+                name="Business" value="business">
+              <label class="custom-control-label" for="interest-business">Business</label>
+            </div>
+            <div class="custom-control custom-checkbox custom-control-inline">
+              <input class="custom-control-input" title="agri" id="interest-agriculture" type="checkbox"
+                name="Agriculture" value="agri">
+              <label class="custom-control-label" for="interest-agriculture">Agriculture</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-6 mb-3 pr-xl-4 pr-lg-4 pr-md-3">
+          <label for="pass">Password</label>
+          <input class="form-control fa" title="pass" id="pass" type="password" name="pass" placeholder=" Password"
+            required>
+          <div class="invalid-tooltip">
+            This filed is required
+          </div>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-md-6 mb-3 pl-xl-4 pl-lg-4 pl-md-3">
+          <label for="cpass">Confirm Password</label>
+          <input class="form-control fa" title="cpass" id="cpass" type="password" name="cpass"
+            placeholder=" Re-enter password" required>
+          <div class="invalid-tooltip">
+            This filed is required
+          </div>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6 col-sm-12 p-0 mx-auto text-center">
+        <div class="file-field input-field">
+          <div class="btn">
+            <span>Profile Picture</span>
+            <input type="file">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" placeholder="Upload your profile picture">
+          </div>
+        </div>
+      </div>
+      <div id="btnid" class="text-center">
+        <button class="btn waves-effect waves-light" type="submit" onclikc="createAcc()">Register</button>
+      </div>
+    </form>
+  </div>
+  <!--   <script type="text/javascript" src="plugins/materialize/js/materialize.min.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      window.addEventListener('load', function () {
+        var forms = document.getElementsByClassName('needs-validation');
+        var validation = Array.prototype.filter.call(forms, function (form) {
+          form.addEventListener('submit', function (event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+            debugger
+          }, false);
+        });
+      }, false);
+    })();
+  </script> -->
+</body>
+
+</html>

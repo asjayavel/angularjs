@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Sample Demo</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="fav.ico">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body [ngStyle]="{'mt-5 p-0' : isHeaderHide}">
+  <app-header *ngIf="!(router.url == '/login' || router.url == '/signup')"></app-header>
+  <app-root></app-root>
+</body>
+
+</html>
